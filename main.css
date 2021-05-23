@@ -1,29 +1,24 @@
 body {
     margin: 40px auto;
     max-width: 650px;
+    height: 100vh;
     line-height: 1.6;
     font-size: 18px;
     color: #444;
     padding: 0 10px;
 }
 
-#board-container {
+#board {
     display: grid;
     margin: 0 auto;
     height: 500px;
     width: 500px;
 }
 
-#board {
-    /*
-    display: grid;
-    height: 250px;
-    width: 250px;
-    align-items: center;
-    */
-}
-
 footer {
-    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
     text-align: center;
 }
