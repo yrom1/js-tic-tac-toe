@@ -1,11 +1,15 @@
 'use strict';
 
 (function makeBoard () {
-    console.log('hi');
-    const div = document.createElement('div');
-    const container = document.querySelector('#board');
-    div.textContent = 'test';
-    div.setAttribute('id', 'test');
-    container.appendChild(div)
-
+    const board = document.querySelector('#board');
+    board.setAttribute('style', `display: grid; grid-template-columns: repeat(3, 1fr); grid gap: 5px; gird-template-rows: repeat(3, 1fr);`);
+    for (let i=0; i<3; i++) {
+        for (let j=0; j<3; j++) {
+            const div = document.createElement('div');
+            const divId = 'board' + parseInt(i) + parseInt(j);
+            div.setAttribute('id', divId);
+            div.textContent = divId;
+            board.appendChild(div);
+        }
+    }
 })();
