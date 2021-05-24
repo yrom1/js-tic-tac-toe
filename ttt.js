@@ -19,25 +19,28 @@ let boardDB = (function() {
     }
 
     function updateState (i, j) {
-        console.log(winCondition)
+        console.log(boardState, winCondition, winner)
         // update the boardState array
         if (boardState[i][j] !== '' || winCondition === true) {
+            console.log('abort')
             return
         }
         let currentTurnChar = ''
         let turnsPassed = boardState.flat().filter(elem => elem !== '').length;
+        console.log('turnspassed ', turnsPassed)
         if (turnsPassed % 2 === 0) {
             currentTurnChar = 'X';
         }
         else {
             currentTurnChar = 'O';
         }
+        console.log('currentTurnChar', currentTurnChar)
         boardState[i][j] = currentTurnChar;
         console.log(boardState)
 
         // update the div text based on boardState array
         const updateDiv = document.getElementById('board' + String(i) + String(j));
-        updateDiv.textContent = boardDB.boardState[i][j];
+        updateDiv.textContent = boardState[i][j];
     
         function getUniqueNonBlankValuesFromArray (arr) {
             let counts = {};
@@ -46,7 +49,7 @@ let boardDB = (function() {
                     counts[arr[i]] = 1 + (counts[arr[i]] || 0);
                 }
             }
-            console.log('counts ', counts)
+            //console.log('counts ', counts)
             return counts
         }
 
@@ -55,7 +58,7 @@ let boardDB = (function() {
             const arr = boardState[row];
             let counts = getUniqueNonBlankValuesFromArray(arr);
             if (Math.max(... Object.values(counts)) === 3) {
-                console.log(boardState[row][0] + ' won');
+                //console.log(boardState[row][0] + ' won');
                 setWinner(boardState[row][0]);
             }
         }
@@ -63,18 +66,18 @@ let boardDB = (function() {
             const arr = [boardState[0][col], boardState[1][col], boardState[2][col]];
             let counts = getUniqueNonBlankValuesFromArray(arr);
             if (Math.max(... Object.values(counts)) === 3) {
-                console.log(boardState[0][col] + ' won')
+                //console.log(boardState[0][col] + ' won')
                 setWinner(boardState[0][col]);
             }
         }
         let diagTopLBotR = [boardState[0][0], boardState[1][1], boardState[2][2]];
         let diagTopRBotL = [boardState[0][2], boardState[1][1], boardState[2][0]];
         if (Math.max(... Object.values(getUniqueNonBlankValuesFromArray(diagTopLBotR))) === 3) {
-            console.log(boardState[0][0] + ' won')
+            //console.log(boardState[0][0] + ' won')
             setWinner(boardState[0][0]);
         }
         if (Math.max(... Object.values(getUniqueNonBlankValuesFromArray(diagTopRBotL))) === 3) {
-            console.log(boardState[0][2] + ' won')
+            //console.log(boardState[0][2] + ' won')
             setWinner(boardState[0][2]);
         }
     }
@@ -107,8 +110,8 @@ function makeBoard () {
 makeBoard()
 document.getElementById('reset-button').addEventListener('click', function(event) {
     console.log('hi');
-    makeBoard();
     boardDB.resetBoardState();
+    makeBoard();
 })
 
 console.log(boardDB.boardState)
