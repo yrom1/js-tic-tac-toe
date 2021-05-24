@@ -112,6 +112,8 @@ document.getElementById('reset-button').addEventListener('click', function(event
     console.log('hi');
     boardDB.resetBoardState();
     makeBoard();
+    const winnerDiv = document.querySelector('#winner');
+    winnerDiv.textContent = '';
 })
 
 console.log(boardDB.boardState)
