@@ -1,11 +1,17 @@
-'use strict';
-
 let boardDB = (function() {
     let boardState = [['', '', ''], ['', '', ''], ['', '', '']];
+    let winCondition = false;
+    let winner = '';
     
+    function setWinner (winningPlayer) {
+        winner = winningPlayer;
+        winCondition = true;
+        console.log('winCondition ', winCondition)
+    }
+
     function updateState (i, j) {
         // update the boardState array
-        if (boardState[i][j] !== '') {
+        if (boardState[i][j] !== '' || winCondition === true) {
             return
         }
         let currentTurnChar = ''
@@ -23,7 +29,6 @@ let boardDB = (function() {
         const updateDiv = document.getElementById('board' + String(i) + String(j));
         updateDiv.textContent = boardDB.boardState[i][j];
     
-
         function getUniqueNonBlankValuesFromArray (arr) {
             let counts = {};
             for (let i = 0; i < arr.length; i++) {
@@ -34,12 +39,14 @@ let boardDB = (function() {
             console.log('counts ', counts)
             return counts
         }
+
         // check if win condition is met
         for (let row=0; row<3; row++) {
             const arr = boardState[row];
             let counts = getUniqueNonBlankValuesFromArray(arr);
             if (Math.max(... Object.values(counts)) === 3) {
                 console.log(boardState[row][0] + ' won');
+                setWinner(boardState[row][0]);
             }
         }
         for (let col=0; col<3; col++) {
@@ -47,15 +54,18 @@ let boardDB = (function() {
             let counts = getUniqueNonBlankValuesFromArray(arr);
             if (Math.max(... Object.values(counts)) === 3) {
                 console.log(boardState[0][col] + ' won')
+                setWinner(boardState[0][col]);
             }
         }
         let diagTopLBotR = [boardState[0][0], boardState[1][1], boardState[2][2]];
         let diagTopRBotL = [boardState[0][2], boardState[1][1], boardState[2][0]];
         if (Math.max(... Object.values(getUniqueNonBlankValuesFromArray(diagTopLBotR))) === 3) {
             console.log(boardState[0][0] + ' won')
+            setWinner(boardState[0][0]);
         }
         if (Math.max(... Object.values(getUniqueNonBlankValuesFromArray(diagTopRBotL))) === 3) {
             console.log(boardState[0][2] + ' won')
+            setWinner(boardState[0][2]);
         }
     }
     
