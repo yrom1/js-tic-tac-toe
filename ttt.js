@@ -83,7 +83,7 @@ function makeBoard () {
             const div = document.createElement('div');
             const divId = 'board' + parseInt(i) + parseInt(j);
             div.setAttribute('id', divId);
-            div.textContent = divId;
+            div.textContent = '';
             div.addEventListener('click', function(event) {
                 console.log(divId);
                 boardDB.updateState(parseInt(i),parseInt(j));

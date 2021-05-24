@@ -26,3 +26,10 @@ div#board > * {
 div#footer-container {
     text-align: center;
 }
+
+#button-container {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
