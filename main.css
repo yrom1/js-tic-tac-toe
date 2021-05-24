@@ -1,26 +1,29 @@
 body {
     margin: 40px auto;
     max-width: 650px;
-    height: 100vh;
     line-height: 1.6;
     font-size: 18px;
     color: #444;
     padding: 0 10px;
+
 }
 
-#board {
+div#board {
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
     border: 5px solid #444;
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    
 }
 
-#board > * {
+div#board > * {
     border: 5px solid #444;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+div#footer-container {
+    text-align: center;
 }
