@@ -3,13 +3,21 @@ let boardDB = (function() {
     let winCondition = false;
     let winner = '';
     
+    function resetBoardState () {
+        boardState = [['', '', ''], ['', '', ''], ['', '', '']];
+        winCondition = false;
+        winner = '';
+    }
+
     function setWinner (winningPlayer) {
         winner = winningPlayer;
         winCondition = true;
+        console.log('winner ', winner)
         console.log('winCondition ', winCondition)
     }
 
     function updateState (i, j) {
+        console.log(winCondition)
         // update the boardState array
         if (boardState[i][j] !== '' || winCondition === true) {
             return
@@ -71,7 +79,8 @@ let boardDB = (function() {
     
     return {
         boardState,
-        updateState
+        updateState,
+        resetBoardState
     }
 })();
 
@@ -95,8 +104,9 @@ function makeBoard () {
 
 makeBoard()
 document.getElementById('reset-button').addEventListener('click', function(event) {
-    console.log('hi')
+    console.log('hi');
     makeBoard();
+    boardDB.resetBoardState();
 })
 
 console.log(boardDB.boardState)
