@@ -12,6 +12,8 @@ let boardDB = (function() {
     function setWinner (winningPlayer) {
         winner = winningPlayer;
         winCondition = true;
+        const winnerDiv = document.querySelector('#winner')
+        winnerDiv.textContent = 'The winner is ' + winner + '!';
         console.log('winner ', winner)
         console.log('winCondition ', winCondition)
     }

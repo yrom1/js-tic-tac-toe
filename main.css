@@ -7,6 +7,13 @@ body {
     padding: 0 10px;
 }
 
+div#winner {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 div#board {
 	width: 500px;
 	height: 500px;
