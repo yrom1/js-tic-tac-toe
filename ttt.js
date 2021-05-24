@@ -75,8 +75,9 @@ let boardDB = (function() {
     }
 })();
 
-(function makeBoard () {
+function makeBoard () {
     const board = document.querySelector('#board');
+    board.textContent = '' // clear all DOM subnodes for when we reset the board 
     for (let i=0; i<3; i++) {
         for (let j=0; j<3; j++) {
             const div = document.createElement('div');
@@ -90,6 +91,12 @@ let boardDB = (function() {
             board.appendChild(div);
         }
     }
-})();
+};
+
+makeBoard()
+document.getElementById('reset-button').addEventListener('click', function(event) {
+    console.log('hi')
+    makeBoard();
+})
 
 console.log(boardDB.boardState)
